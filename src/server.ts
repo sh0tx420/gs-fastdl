@@ -10,17 +10,22 @@ export default async function Serve(host: string, portn: number) {
         
         async fetch(request: Request) {
             const route = new URL(request.url).pathname;
-            const p16 = cfg.basePath + route;
+            const what = cfg.servers[route.slice(1)] // how do i name this variable????
+            let vpath = cfg.basePath;
 
             logger.info(route);
+
+            // i dont even know what to comment here
+            if (route === what) {
+                vpath = what.path
+            }
             
-            return new Response(Bun.file(p16));
+            vpath += route;
+            return new Response(Bun.file(vpath));
         },
-        /*
         error() {
-            return new Response(null, { status: 404 });
+            return new Response("404 Not Found", { status: 404 });
         },
-        */
     })
 
     logger.info(`HTTP server UP: ${server.hostname}:${server.port}`)

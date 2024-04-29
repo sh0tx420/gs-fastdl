@@ -2,10 +2,9 @@
     "host": "192.168.1.111",
     "port": 3122,
     "basePath": "/home/user/programmering/webdev/gs-fastdl",
-    "servers": [
-        {
-            "name": "1",
-            "path": ""
+    "servers": {
+        "halflifez": {
+            "path": "/home/user/programmering/webdev/gs-fastdl/public"
         }
-    ]
+    }
 }
