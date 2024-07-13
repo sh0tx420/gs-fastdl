@@ -12,6 +12,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "start": "bun run --watch src/main.ts"
+    "start": "bun run --watch src/main.ts",
+    "compile": "bun build --compile --minify ./src/main.ts --outfile ./build/gsfastdl"
   }
 }
