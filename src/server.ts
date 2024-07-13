@@ -1,12 +1,12 @@
-import logger from "./utils/logger"
-import json from "./utils/json"
+import logger from "./utils/logger";
+import json from "./utils/json";
 
 // List of files that shouldn't be served to the fastdl user
 const rgHaramFiles = [
     "server.cfg",
     "listenserver.cfg",
     "start.sh"
-]
+];
 
 export default async function Serve(host: string, portn: number) {
     const cfg = await json.ReadJSON("servers.json");
@@ -17,7 +17,7 @@ export default async function Serve(host: string, portn: number) {
         port: portn,
         async fetch(request: Request) {
             // Create URL string from request URL using Host header as the base
-            const reqUrl = new URL(request.url, `http://${request.headers.get("Host")}`)
+            const reqUrl = new URL(request.url, `http://${request.headers.get("Host")}`);
 
             // Loop through cfg.servers to access the key names later
             for (const idx of Object.keys(cfg.servers)) {
@@ -30,7 +30,7 @@ export default async function Serve(host: string, portn: number) {
                 // Get the first directory name by slicing virtual directory name length after idx length.
                 // wait can't we just use "idx" for this?? wtf
                 // oh wait yeah because it's from the request URL
-                const szVirtualDir_first = szVirtualDir.substring(0, szVirtualDir.length > idx.length ? idx.length : szVirtualDir.length)
+                const szVirtualDir_first = szVirtualDir.substring(0, szVirtualDir.length > idx.length ? idx.length : szVirtualDir.length);
                 logger.info(`virtualDir_first: ${szVirtualDir_first}`);
 
                 // Check if the key name matches with first dir name of virtual dir
@@ -60,5 +60,5 @@ export default async function Serve(host: string, portn: number) {
         }
     });
 
-    logger.info(`HTTP server UP: ${server.hostname}:${server.port}`)
+    logger.info(`HTTP server UP: ${server.hostname}:${server.port}`);
 }

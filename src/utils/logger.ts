@@ -5,4 +5,4 @@ export default {
     error: async function (text: string) {
         return process.stdout.write(`\u001b[1;31;1m[ERROR] \u001b[0;1;37m${text}\u001b[0m\n`);
     }
-}
+};
